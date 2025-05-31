@@ -158,7 +158,7 @@ Your Name
 
 📧 mailto:ronitrajput182005@gmail.com
 
-🔗 LinkedIn:www.linkedin.com/in/ronit-rajput-973602278
+🔗 LinkedIn:https://www.linkedin.com/in/ronit-rajput-973602278
 
 ---
 
