@@ -1,7 +1,6 @@
 import pandas as pd
 import streamlit as st
 import matplotlib.pyplot as plt
-from fontTools.varLib.instancer import verticalMetricsKeptInSync
 
 st.set_page_config(layout='wide',page_title='Startup Analysis')
 
@@ -17,6 +16,42 @@ df['year'] = df['date'].dt.year
 df['month'] = df['date'].dt.month
 year_list = sorted(df['year'].unique().tolist())
 year_list.insert(0,"Overall")
+
+
+st.sidebar.title("Navigation")
+option = st.sidebar.selectbox('Select One', ['Home', 'Overall Analysis', 'Investor Analysis', 'Startup Analysis'])
+
+if option == 'Home':
+    st.title("🚀 Indian Startup Funding Analysis")
+    st.markdown("""
+    Welcome to the Indian Startup Funding Dashboard! 💡
+
+    This application provides insights into:
+    - 💰 Overall funding trends
+    - 🧠 Sector and round-wise analysis
+    - 🏙️ City-wise startup distributions
+    - 📈 YOY investment patterns
+    - 🤝 Investor and Startup level details
+
+    Use the sidebar to explore:
+    - **Overall trends**
+    - **Investor-specific analysis**
+    - **Startup-specific analysis**
+
+    ---
+    **Dataset Source**: [Startup Funding Data](#)
+    """)
+
+elif option == 'Overall Analysis':
+    load_overall_analysis()
+
+elif option == 'Investor Analysis':
+    selected_investor = st.sidebar.selectbox("Select Investor", sorted(df['investor'].dropna().unique()))
+    load_investor_details(selected_investor)
+
+elif option == 'Startup Analysis':
+    selected_startup = st.sidebar.selectbox("Select Startup", sorted(df['startup'].dropna().unique()))
+    load_startup_analysis(selected_startup)
 
 def load_overall_analysis():
 
@@ -280,51 +315,3 @@ def load_startup_analysis(startup):
         fig1 = plt.figure()
         plt.plot(year_series.index, year_series.values)
         st.pyplot(fig1)
-
-
-
-
-
-option = st.sidebar.selectbox('Select One',['Overall Analysis','Startup','Investor'])
-
-if option == 'Overall Analysis':
-    # btn0 = st.sidebar.button("Show Overall Analysis")
-    st.title("Overall Analysis")
-    load_overall_analysis()
-    #
-
-elif option == "Startup":
-
-    selected_startup = st.sidebar.selectbox('Select Startup', sorted(df['startup'].unique().tolist()))
-    # st.title("Startup Analysis")
-    btn1 = st.sidebar.button("Find Startup Details")
-    if btn1:
-        load_startup_analysis(selected_startup)
-
-
-else:
-    selected_investor = st.sidebar.selectbox('Select Investor',sorted(set(df['investor'].str.split(',').sum())))
-    btn2 = st.sidebar.button("Find Investor Details")
-    if btn2:
-        load_investor_details(selected_investor)
-    # st.title("Investor Analysis")
-
-
-# st.dataframe(df)
-
-
-    # with col2:
-    #     st.header("Top Investors Overall and Year Wise")
-    #
-    #     selected_option1 = st.selectbox('Select Year', year_list, key='year2_select')
-    #
-    #     if selected_option1 == 'Overall':
-    #         my_df = df.groupby('investor')['amount'].sum().sort_values(ascending=False).head(10)
-    #     else:
-    #         my_df = df[df['year'] == selected_option1]
-    #         my_df = my_df.groupby('investor')['amount'].sum().sort_values(ascending=False).head(10)
-    #
-    #     fig1 = plt.figure()
-    #     plt.bar(my_df.index, my_df.values)
-    #     plt.xticks(rotation=90)
-    #     st.pyplot(fig1)
