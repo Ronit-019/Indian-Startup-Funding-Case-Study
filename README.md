@@ -97,8 +97,6 @@ Ensure the following Python packages are installed:
 
  `matplotlib`
 
- `fonttools` (used internally)
-
 
 Install all using:
 
