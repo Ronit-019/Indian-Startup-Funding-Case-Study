@@ -2,6 +2,7 @@ import pandas as pd
 import streamlit as st
 import matplotlib.pyplot as plt
 
+
 st.set_page_config(layout='wide',page_title='Startup Analysis')
 
 df = pd.read_csv("startup_cleaned.csv")
@@ -16,42 +17,6 @@ df['year'] = df['date'].dt.year
 df['month'] = df['date'].dt.month
 year_list = sorted(df['year'].unique().tolist())
 year_list.insert(0,"Overall")
-
-
-st.sidebar.title("Navigation")
-option = st.sidebar.selectbox('Select One', ['Home', 'Overall Analysis', 'Investor Analysis', 'Startup Analysis'])
-
-if option == 'Home':
-    st.title("🚀 Indian Startup Funding Analysis")
-    st.markdown("""
-    Welcome to the Indian Startup Funding Dashboard! 💡
-
-    This application provides insights into:
-    - 💰 Overall funding trends
-    - 🧠 Sector and round-wise analysis
-    - 🏙️ City-wise startup distributions
-    - 📈 YOY investment patterns
-    - 🤝 Investor and Startup level details
-
-    Use the sidebar to explore:
-    - **Overall trends**
-    - **Investor-specific analysis**
-    - **Startup-specific analysis**
-
-    ---
-    **Dataset Source**: [Startup Funding Data](#)
-    """)
-
-elif option == 'Overall Analysis':
-    load_overall_analysis()
-
-elif option == 'Investor Analysis':
-    selected_investor = st.sidebar.selectbox("Select Investor", sorted(df['investor'].dropna().unique()))
-    load_investor_details(selected_investor)
-
-elif option == 'Startup Analysis':
-    selected_startup = st.sidebar.selectbox("Select Startup", sorted(df['startup'].dropna().unique()))
-    load_startup_analysis(selected_startup)
 
 def load_overall_analysis():
 
@@ -315,3 +280,42 @@ def load_startup_analysis(startup):
         fig1 = plt.figure()
         plt.plot(year_series.index, year_series.values)
         st.pyplot(fig1)
+
+
+st.sidebar.title("Navigation")
+option = st.sidebar.selectbox('Select One', ['Home', 'Overall Analysis', 'Investor Analysis', 'Startup Analysis'])
+
+if option == 'Home':
+    st.title("🚀 Indian Startup Funding Analysis")
+    st.markdown("""
+    Welcome to the Indian Startup Funding Dashboard! 💡
+
+    This application provides insights into:
+    - 💰 Overall funding trends
+    - 🧠 Sector and round-wise analysis
+    - 🏙️ City-wise startup distributions
+    - 📈 YOY investment patterns
+    - 🤝 Investor and Startup level details
+
+    Use the sidebar to explore:
+    - **Overall trends**
+    - **Investor-specific analysis**
+    - **Startup-specific analysis**
+
+    ---
+    **Dataset Source**: [Startup Funding Data](#)
+    """)
+
+elif option == 'Overall Analysis':
+    load_overall_analysis()
+
+elif option == 'Investor Analysis':
+    selected_investor = st.sidebar.selectbox("Select Investor", sorted(df['investor'].dropna().unique()))
+    load_investor_details(selected_investor)
+
+elif option == 'Startup Analysis':
+    selected_startup = st.sidebar.selectbox("Select Startup", sorted(df['startup'].dropna().unique()))
+    load_startup_analysis(selected_startup)
+
+
+
