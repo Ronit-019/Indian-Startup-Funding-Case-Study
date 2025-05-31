@@ -151,15 +151,12 @@ Pull requests are welcome! For significant changes, please open an issue first t
 This project is licensed under the [MIT License](LICENSE).
 
 
- 🙋‍♂️ Author
+ 👨‍💻 Developed By
 
 
-Your Name
+Ronit Rajput – ICT Engineer, 3rd Year
 
-📧 mailto:ronitrajput182005@gmail.com
-
-🔗 LinkedIn:https://www.linkedin.com/in/ronit-rajput-973602278
-
+Feel free to connect on https://www.linkedin.com/in/ronit-rajput-973602278 or reach out via email.
 ---
 
 
