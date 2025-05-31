@@ -154,11 +154,6 @@ This project is licensed under the [MIT License](LICENSE).
  👨‍💻 Developed By
 
 
-Ronit Rajput – ICT Engineer, 3rd Year
+Ronit Rajput – ICT Engineer
 
 Feel free to connect on https://www.linkedin.com/in/ronit-rajput-973602278 or reach out via email.
----
-
-
-```
-
